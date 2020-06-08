@@ -12,20 +12,14 @@ public class Zadatak01 {
 		int drugiBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesi drugi broj"));
 		int treciBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesi treci broj"));
 		
-		int broj = 0;
-		
-		if(prviBroj >= drugiBroj ) {
-			broj = prviBroj;
+		if(prviBroj >= drugiBroj && prviBroj >= treciBroj) {
+			System.out.println(prviBroj);
+		}else if (drugiBroj >= prviBroj && drugiBroj >= treciBroj) {
+			System.out.println(drugiBroj);
+		}else if (treciBroj >= prviBroj && treciBroj >= drugiBroj) {
+			System.out.println(treciBroj);
 		}
-		else {
-			broj = drugiBroj;
-		}
-		if(treciBroj >= broj) {
-				broj = treciBroj;
-				
-			}
-		
-		System.out.println("Najveci broj je "+broj);
+	
 	}
 
 }
