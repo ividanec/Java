@@ -4,6 +4,9 @@ import javax.swing.JOptionPane;
 
 public class CiklickaTablica {
 
+	// Korisnik unosi broj redova i broj stupaca
+	// kreira se tablica,broj 1 se nalazi u donjem desnom kutu
+	// polja tablice se popunjavaju spiralno ciklicki u krug u smjeru kazaljke na satu
 	
 	public static void main(String[] args) {
 		
