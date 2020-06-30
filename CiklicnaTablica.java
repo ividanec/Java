@@ -2,7 +2,7 @@ package edunova;
 
 import javax.swing.JOptionPane;
 
-public class CiklickaTablica {
+public class CiklicnaTablica {
 
 	// Korisnik unosi broj redova i broj stupaca
 	// kreira se tablica,broj 1 se nalazi u donjem desnom kutu
