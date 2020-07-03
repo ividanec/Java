@@ -13,7 +13,7 @@ public class Zadatak02 {
 		
 		public static void main(String[] args) {
 				int broj = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj od 1 do 5"));
-				
+			
 				if (broj <1 || broj > 5) {
 					System.out.println("Nije dobar broj");
 				}else {
