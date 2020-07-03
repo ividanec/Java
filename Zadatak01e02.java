@@ -8,9 +8,9 @@ public class Zadatak01 {
 	// ispisuje se najveći
 	
 	public static void main(String[] args) {
-		int prviBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesi prvi broj"));
-		int drugiBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesi drugi broj"));
-		int treciBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesi treci broj"));
+		int prviBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesite prvi broj"));
+		int drugiBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesite drugi broj"));
+		int treciBroj = Integer.parseInt(JOptionPane.showInputDialog("Unesite treci broj"));
 		
 		if(prviBroj >= drugiBroj && prviBroj >= treciBroj) {
 			System.out.println(prviBroj);
