@@ -1,5 +1,9 @@
 package edunova.soba;
 
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 public class Start {
 
 	public Start() {
@@ -7,6 +11,7 @@ public class Start {
 	}
 	
 	public void izbornik() {
+		
 		System.out.println("*****************");
 		System.out.println("1. Unos Sobe");
 		System.out.println("2. Pregled soba");
@@ -18,29 +23,47 @@ public class Start {
 	}
 	
 	private void odrediAkciju() {
-		int akcija=Pomocno.ucitajBroj("Odaberi akciju");
+	
+	
+		switch(provjera()) {
 		
-		switch(akcija) {
-		case 1:
+		case "1":
 			unosNoveSobe();
 			break;
-		case 2:
+		case "2":
 			pregledSoba();
 			break;
-		case 3:
+		case "3":
 			promjenaSobe();
 			break;
-		case 4:
+		case "4":
 			brisanjeSobe();
 			break;
-		case 5:
+		case "t":
 			System.out.println("Dovidenja");
 			return;
-		default :
-			System.out.println("Ne postojeca akcija");	
+			default:
+				System.out.println("Ne postojeca akcija");
 		}
 		izbornik();
 	}
+	
+		private String provjera() {
+			String unos;
+			while (true) {
+				unos = JOptionPane.showInputDialog("Odaberi akciju");
+				if (unos.length() > 1 || unos.trim().isEmpty() || (!unos.matches("[1-4]+") && !unos.equals("t"))) {
+					JOptionPane.showMessageDialog(null, "Krivi odabir");
+					continue;
+				}
+				return unos;
+
+			}
+
+		}
+		
+		
+	
 
 	private void unosNoveSobe() {
 		// TODO Auto-generated method stub
