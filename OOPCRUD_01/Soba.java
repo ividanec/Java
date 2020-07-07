@@ -1,41 +1,31 @@
 package edunova.soba;
 
-import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 public class Soba {
 
-	private Integer sifra;
+	private static Integer id = 1;
+	
+	private String sifra;
 	private boolean zabranjen;
-	private SimpleDateFormat napravljen;
-	private SimpleDateFormat posuden;
-	private Long postanskiBroj;
-	private SimpleDateFormat kreiran;
+	private Date napravljen;
+	private Date posuden;
+	private String postanskiBroj;
+	private Date kreiran;
 	private Program program;
 	
 	
-	
-	
-	public Soba() {
-		
-	}
-	
-	public Soba(Integer sifra, boolean zabranjen, SimpleDateFormat napravljen, SimpleDateFormat posuden,
-			Long postanskiBroj, SimpleDateFormat kreiran, Program program) {
-		
-		this.sifra = sifra;
-		this.zabranjen = zabranjen;
-		this.napravljen = napravljen;
-		this.posuden = posuden;
-		this.postanskiBroj = postanskiBroj;
-		this.kreiran = kreiran;
-		this.program = program;
-	}
-	
-	public Integer getSifra() {
+	public String getSifra() {
 		return sifra;
 	}
-	public void setSifra(Integer sifra) {
-		this.sifra = sifra;
+	public void setSifra() {
+		this.sifra = idGenerator();
+	}
+	
+	private String idGenerator() {
+		
+		return String.valueOf(id++);
 	}
 	public boolean isZabranjen() {
 		return zabranjen;
@@ -43,28 +33,28 @@ public class Soba {
 	public void setZabranjen(boolean zabranjen) {
 		this.zabranjen = zabranjen;
 	}
-	public SimpleDateFormat getNapravljen() {
+	public Date getNapravljen() {
 		return napravljen;
 	}
-	public void setNapravljen(SimpleDateFormat napravljen) {
+	public void setNapravljen(Date napravljen) {
 		this.napravljen = napravljen;
 	}
-	public SimpleDateFormat getPosuden() {
+	public Date getPosuden() {
 		return posuden;
 	}
-	public void setPosuden(SimpleDateFormat posuden) {
+	public void setPosuden(Date posuden) {
 		this.posuden = posuden;
 	}
-	public Long getPostanskiBroj() {
+	public String getPostanskiBroj() {
 		return postanskiBroj;
 	}
-	public void setPostanskiBroj(Long postanskiBroj) {
+	public void setPostanskiBroj(String postanskiBroj) {
 		this.postanskiBroj = postanskiBroj;
 	}
-	public SimpleDateFormat getKreiran() {
+	public Date getKreiran() {
 		return kreiran;
 	}
-	public void setKreiran(SimpleDateFormat kreiran) {
+	public void setKreiran(Date kreiran) {
 		this.kreiran = kreiran;
 	}
 	public Program getProgram() {
@@ -74,5 +64,9 @@ public class Soba {
 		this.program = program;
 	}
 	
+	@Override
+	public String toString() {
 	
+		return sifra+" "+zabranjen+" "+napravljen.toString()+" "+posuden.toString()+" "+postanskiBroj+" "+kreiran.toString()+" "+program.toString();
+	}
 }

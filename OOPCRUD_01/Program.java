@@ -1,38 +1,35 @@
 package edunova.soba;
 
-import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 public class Program {
 
-	private Integer sifra;
+	private static Integer id = 1;
+	
+	private String sifra;
 	private boolean obrisan;
 	private String naziv;
-	private SimpleDateFormat datum;
+	private Date datum;
 	private String prezime;
-	private Long mobitel;
+	private String mobitel;
 	
 	
 	
-	public Program() {
-		
-	}
+
 	
-	public Program(Integer sifra, boolean obrisan, String naziv, SimpleDateFormat datum, String prezime, Long mobitel) {
-		
-		this.sifra = sifra;
-		this.obrisan = obrisan;
-		this.naziv = naziv;
-		this.datum = datum;
-		this.prezime = prezime;
-		this.mobitel = mobitel;
-	}
-	
-	public Integer getSifra() {
+	public String getSifra() {
 		return sifra;
 	}
-	public void setSifra(Integer sifra) {
-		this.sifra = sifra;
+	public void setSifra() {
+		this.sifra = idGenerator();
 	}
+	
+	private String idGenerator() {
+		
+		return String.valueOf(id++);
+	}
+	
 	public boolean isObrisan() {
 		return obrisan;
 	}
@@ -45,10 +42,10 @@ public class Program {
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
-	public SimpleDateFormat getDatum() {
+	public Date getDatum() {
 		return datum;
 	}
-	public void setDatum(SimpleDateFormat datum) {
+	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
 	public String getPrezime() {
@@ -57,12 +54,16 @@ public class Program {
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
-	public Long getMobitel() {
+	public String getMobitel() {
 		return mobitel;
 	}
-	public void setMobitel(Long mobitel) {
+	public void setMobitel(String mobitel) {
 		this.mobitel = mobitel;
 	}
 	
-	
+	@Override
+	public String toString() {
+
+		return sifra+" "+obrisan+" "+naziv+" "+datum.toString()+" "+prezime+" "+mobitel;
+	}
 }
