@@ -1,5 +1,7 @@
 package vidanec.ljetnizadatak;
 
+import java.util.List;
+
 public class Start {
 
 	public Start() {
@@ -14,7 +16,24 @@ public class Start {
 	}
 
 	private void izvedi() {
-		// TODO Auto-generated method stub
+		switch (Pomocno.ucitajBroj("Odaberi zeljenu akciju")) {
+		case 1:
+			izlistajOsobe();
+			izbornik();
+			break;
+		default:
+			break;
+		}
+		
+	}
+
+	private void izlistajOsobe() {
+		List<Osoba> osobe = CRUDOsoba.read();
+		
+		
+		for(int i=0;i<osobe.size();i++) {
+			System.out.println(osobe.get(i));
+		}
 		
 	}
 

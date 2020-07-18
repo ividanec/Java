@@ -52,5 +52,9 @@ public class Osoba {
 		this.oib = oib;
 	}
 	
-	
+	@Override
+	public String toString() {
+		
+		return prezime + " " + ime;
+	}
 }

@@ -12,7 +12,8 @@ public class Baza {
 		if(veza==null) {
 			try {
 				Class.forName("org.mariadb.jdbc.Driver");
-				veza = DriverManager.getConnection("jdbc:mariadb://localhost/knjiznicaAPP", "edunova", "edunova");
+				veza = DriverManager.getConnection(
+						"jdbc:mariadb://localhost/knjiznicaAPP", "edunova", "edunova");
 			} catch (ClassNotFoundException | SQLException e) {
 				
 			}
