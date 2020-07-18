@@ -8,6 +8,7 @@ import java.util.List;
 
 public class CRUDOsoba {
 
+	// ispis
 	public static List<Osoba> read() {
 		List<Osoba> osobe = new ArrayList<>();
 		try {
