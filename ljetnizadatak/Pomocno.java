@@ -14,4 +14,16 @@ public class Pomocno {
 		}
 	}
 	
+	public static String ucitajString(String poruka) {
+		String s;
+		while(true) {
+			s=JOptionPane.showInputDialog(poruka);
+			if(s.trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Obavezan unos");
+				continue;
+			}
+			return s;
+		}
+	}
+	
 }

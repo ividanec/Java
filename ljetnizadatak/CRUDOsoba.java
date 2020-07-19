@@ -7,6 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CRUDOsoba {
+	
+	// unos
+	public static void create(Osoba osoba) {
+		try {
+			PreparedStatement izraz = Baza.getVeza().prepareStatement("insert into osoba" + "(ime,prezime,broj_tel,oib)" + "values (?,?,?,?)");
+			
+			izraz.setString(1, osoba.getIme());
+			izraz.setString(2, osoba.getPrezime());
+			izraz.setString(3, osoba.getBroj_tel());
+			izraz.setString(4, osoba.getOib());
+			
+			izraz.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	// ispis
 	public static List<Osoba> read() {

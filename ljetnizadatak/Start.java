@@ -11,6 +11,7 @@ public class Start {
 	
 	private void izbornik() {
 		System.out.println("1. Izlistaj sve osobe iz baze");
+		System.out.println("2. Unesi novu osobu");
 		System.out.println("5. Izlaz iz aplikacije");
 		izvedi();
 	}
@@ -21,10 +22,22 @@ public class Start {
 			izlistajOsobe();
 			izbornik();
 			break;
+		case 2:
+			unosNoveOsobe();
+			izbornik();
 		default:
 			break;
 		}
 		
+	}
+
+	private void unosNoveOsobe() {
+		CRUDOsoba.create(new Osoba(1,
+				Pomocno.ucitajString("Unesi ime osobe"),
+				Pomocno.ucitajString("Unesi prezime osobe"),
+				Pomocno.ucitajString("Unesi broj telefona osobe"),
+				Pomocno.ucitajString("Unesi oib osobe")));
+			
 	}
 
 	private void izlistajOsobe() {
