@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CRUDOsoba {
 	
-	// unos
+	// unos osobe
 	public static void create(Osoba osoba) {
 		try {
 			PreparedStatement izraz = Baza.getVeza().prepareStatement("insert into osoba" + "(ime,prezime,broj_tel,oib)" + "values (?,?,?,?)");
@@ -27,7 +27,7 @@ public class CRUDOsoba {
 	}
 	
 
-	// ispis
+	// ispis osoba
 	public static List<Osoba> read() {
 		List<Osoba> osobe = new ArrayList<>();
 		try {
