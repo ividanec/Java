@@ -52,4 +52,49 @@ public class CRUDOsoba {
 		}
 		return osobe;
 	}
+	
+	public static void updateOsoba(Osoba osoba) {
+		try {
+			PreparedStatement izraz = Baza.getVeza().prepareStatement(
+					"update osoba set "
+					+ " ime=?, "
+					+ " prezime=?, "
+					+ " broj_tel=?, "
+					+ " oib=? "
+					+ " where sifra=? ");
+			
+			izraz.setString(1, osoba.getIme());
+			izraz.setString(2, osoba.getPrezime());
+			izraz.setString(3, osoba.getBroj_tel());
+			izraz.setString(4, osoba.getOib());
+			izraz.setInt(5, osoba.getSifra());
+			
+			izraz.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void deleteOsoba(int sifra) {
+		try {
+			PreparedStatement izraz = Baza.getVeza().prepareStatement("delete from osoba " + " where sifra=? ");
+			izraz.setInt(1, sifra);
+			izraz.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static Osoba getOsoba(int redniBroj) {
+		int rb=0;
+		for(Osoba o: read()) {
+			if(++rb==redniBroj) {
+				return o;
+			}
+		}
+		return null;
+	}
 }
