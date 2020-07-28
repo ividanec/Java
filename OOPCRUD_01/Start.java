@@ -8,13 +8,84 @@ import javax.swing.JOptionPane;
 
 public class Start {
 	
+	private int sobaId = 1;
+	private int programId = 1;
+	
 
 	List<Soba> sobe= new ArrayList<Soba>();
 	
 	public Start() {
-		izbornik();
+		randomGenerator();
+		
+		while(true) {
+			
+			izbornik();
+		
+			switch(izbor()) {
+			
+			case "1":
+				unosNoveSobe();
+				break;
+			case "2":
+				pregledSoba();
+				break;
+			case "3":
+				promjenaSobe();
+				break;
+			case "4":
+				brisanjeSobe();
+				break;
+			case "t":
+				System.out.println("Dovidenja");
+				return;
+				default:
+					System.out.println("Ne postojeca akcija");
+			}
+			
+		}
+		
+		
 	}
 	
+	private void randomGenerator() {
+		do {
+			sobe.add(randomUnosStudenta());
+			
+		} while (sobe.size() < 20); 
+		for (Soba soba : sobe) {
+			System.out.println(soba);
+			
+		}
+		
+	}
+
+	private Soba randomUnosStudenta() {
+		Soba soba = new Soba();
+		
+		soba.setSifra(sobaId++);
+		soba.setZabranjen(Pomocno.randomBoolean());
+		soba.setNapravljen(Pomocno.createRandomDate(1900, 2000));
+		soba.setPosuden(Pomocno.createRandomDate(1900, 2000));
+		soba.setPostanskiBroj(Pomocno.randomPostanskiBroj());
+		soba.setKreiran(Pomocno.createRandomDate(1900, 2000));
+		soba.setProgram(randomUnosPrograma());
+		
+		return soba;
+	}
+
+	private Program randomUnosPrograma() {
+		Program program = new Program();
+		
+		program.setSifra(programId++);
+		program.setObrisan(Pomocno.randomBoolean());
+		program.setNaziv(Pomocno.randomNaziv());
+		program.setDatum(Pomocno.createRandomDate(1900, 2000));
+		program.setPrezime(Pomocno.randomNaziv());
+		program.setMobitel(Pomocno.randomMobitel());
+		
+		return program;
+	}
+
 	public void izbornik() {
 		
 		System.out.println("*****************");
@@ -24,76 +95,38 @@ public class Start {
 		System.out.println("4. Brisanje sobe");
 		System.out.println("t - IZLAZ");
 		System.out.println("******************");
-		odrediAkciju();
 	}
 	
-	private void odrediAkciju() {
-	
-	
-		switch(provjera()) {
-		
-		case "1":
-			unosNoveSobe();
-			break;
-		case "2":
-			pregledSoba();
-			break;
-		case "3":
-			promjenaSobe();
-			break;
-		case "4":
-			brisanjeSobe();
-			break;
-		case "t":
-			System.out.println("Dovidenja");
-			return;
-			default:
-				System.out.println("Ne postojeca akcija");
-		}
-		izbornik();
+	private String izbor() {
+		return Pomocno.izbornikAkcije("Odaberi akciju");
 	}
 	
-		private String provjera() {
-			String unos;
-			while (true) {
-				unos = JOptionPane.showInputDialog("Odaberi akciju");
-				if (unos.length() > 1 || unos.trim().isEmpty() || (!unos.matches("[1-4]+") && !unos.equals("t"))) {
-					JOptionPane.showMessageDialog(null, "Krivi odabir");
-					continue;
-				}
-				return unos;
-
-			}
-
-		}
-		
-		
 	
 
 	private void unosNoveSobe() {
 		Soba soba = new Soba();
 		
-		soba.setSifra();
-		soba.setZabranjen(Pomocno.provjeraB("Zabranjen da/ne?"));
-		soba.setNapravljen(Pomocno.datum());
-		soba.setPosuden(Pomocno.datum());
-		soba.setPostanskiBroj(Pomocno.ucitajString("Unesi postanski broj"));
-		soba.setKreiran(Pomocno.datum());
+		soba.setSifra(sobaId++);
+		soba.setZabranjen(Pomocno.provjera("Zabranjen da/ne?"));
+		soba.setNapravljen(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
+		soba.setPosuden(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
+		soba.setPostanskiBroj(Pomocno.ucitajString("Unesite postanski broj"));
+		soba.setKreiran(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
 		soba.setProgram(unosProgram());
 		
 		sobe.add(soba);
-		System.out.println("Soba uspjeseno dodana!");
+		System.out.println("Uspjesan unos!");
 	}
 
 	private Program unosProgram() {
 		Program program = new Program();
-		
-		program.setSifra();
-		program.setObrisan(Pomocno.provjeraB("Obrisan da/ne?"));
-		program.setNaziv(Pomocno.ucitajString("Unesi naziv sobe"));
-		program.setDatum(Pomocno.datum());
-		program.setPrezime(Pomocno.ucitajString("Unesi prezime"));
-		program.setMobitel(Pomocno.ucitajString("Unesi mobitel"));
+	
+		program.setSifra(programId++);
+		program.setObrisan(Pomocno.provjera("Obrisan da/ne?"));
+		program.setNaziv(Pomocno.ucitajString("Unesite naziv"));
+		program.setDatum(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
+		program.setPrezime(Pomocno.ucitajString("Unesite prezime"));
+		program.setMobitel(Pomocno.unesiSamoBrojeve("Unesi broj mobitela"));
 		
 		return program;
 	}
@@ -105,31 +138,38 @@ public class Start {
 		}
 		
 		for(Soba soba : sobe) {
-			
 			System.out.println(soba);
 		}
 		System.out.println("**************");
 	}
 
 	private void promjenaSobe() {
-		pregledSoba();
-		int redniBroj = Pomocno.ucitajBroj("Odaberi broj sobe");
-		int index=redniBroj-1;
-		
-		promjenaPodatakaSobe(sobe.get(index));
-	
+		while(true) {
+			int sifra = Pomocno.ucitajBroj("Unesite broj sobe koju zelite promijeniti");
+			
+			try {
+				for(Soba soba : sobe) {
+					if (soba.getSifra().equals(sifra)) {
+						promjenaPodatakaSobe(soba);
+						return;
+					}
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Soba pod tom šifrom ne postoji");
+			}
+		}
 	}
 
 	private void promjenaPodatakaSobe(Soba soba) {
 		
-		
-				soba.setZabranjen(Pomocno.provjeraB("Zabranjen da/ne"));
-				soba.setNapravljen(Pomocno.datum());
-				soba.setPosuden(Pomocno.datum());
-				soba.setPostanskiBroj(Pomocno.ucitajString("Unesi postanski broj"));
-				soba.setKreiran(Pomocno.datum());
-				soba.setProgram(unosProgram());
-				System.out.println("Promjena je uspjesna");
+			soba.setSifra(sobaId++);
+			soba.setZabranjen(Pomocno.provjera("Zabranjen da/ne"));
+			soba.setNapravljen(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
+			soba.setPosuden(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
+			soba.setPostanskiBroj(Pomocno.ucitajString("Unesite postanski broj"));
+			soba.setKreiran(Pomocno.ucitajDatum("Unesite datum: (dd-MM-yyyy)"));
+			soba.setProgram(unosProgram());
+			System.out.println("Promjena je uspjesna");
 			
 		
 	}
@@ -138,16 +178,18 @@ public class Start {
 		System.out.println("#### BRISANJE OSOBE ####");
 		pregledSoba();
 		
-		int redniBroj=Pomocno.ucitajBroj("Unesite broj sobe koju zelite obrisati");
-		
-		int index=redniBroj-1;
-		
-		if(Pomocno.ucitajBroj("1 za brisati, ostalo za odustati")!=1) {
-			return;
-		}
-		
-		sobe.remove(index);
+		int sifra = Pomocno.ucitajBroj("Unesite broj sobe koju zelite obrisati");
 	
+		for (Soba soba : sobe) {
+			if (soba.getSifra().equals(sifra) && Pomocno
+					.provjera("Jeste li sigurni da želite obrisati sobu?" +"\n"+" da/ne")) {
+
+				sobe.remove(sifra - 1);
+
+				System.out.println("Soba je uspješno obrisana!");
+				return;
+			}
+		}		
 	}
 
 	public static void main(String[] args) {

@@ -1,31 +1,22 @@
 package edunova.soba;
 
-
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Soba {
 
-	private static Integer id = 1;
-	
-	private String sifra;
+	private Integer sifra;
 	private boolean zabranjen;
-	private Date napravljen;
-	private Date posuden;
+	private LocalDate napravljen;
+	private LocalDate posuden;
 	private String postanskiBroj;
-	private Date kreiran;
+	private LocalDate kreiran;
 	private Program program;
 	
-	
-	public String getSifra() {
+	public Integer getSifra() {
 		return sifra;
 	}
-	public void setSifra() {
-		this.sifra = idGenerator();
-	}
-	
-	private String idGenerator() {
-		
-		return String.valueOf(id++);
+	public void setSifra(Integer sifra) {
+		this.sifra = sifra;
 	}
 	public boolean isZabranjen() {
 		return zabranjen;
@@ -33,16 +24,16 @@ public class Soba {
 	public void setZabranjen(boolean zabranjen) {
 		this.zabranjen = zabranjen;
 	}
-	public Date getNapravljen() {
+	public LocalDate getNapravljen() {
 		return napravljen;
 	}
-	public void setNapravljen(Date napravljen) {
+	public void setNapravljen(LocalDate napravljen) {
 		this.napravljen = napravljen;
 	}
-	public Date getPosuden() {
+	public LocalDate getPosuden() {
 		return posuden;
 	}
-	public void setPosuden(Date posuden) {
+	public void setPosuden(LocalDate posuden) {
 		this.posuden = posuden;
 	}
 	public String getPostanskiBroj() {
@@ -51,10 +42,10 @@ public class Soba {
 	public void setPostanskiBroj(String postanskiBroj) {
 		this.postanskiBroj = postanskiBroj;
 	}
-	public Date getKreiran() {
+	public LocalDate getKreiran() {
 		return kreiran;
 	}
-	public void setKreiran(Date kreiran) {
+	public void setKreiran(LocalDate kreiran) {
 		this.kreiran = kreiran;
 	}
 	public Program getProgram() {
@@ -66,7 +57,8 @@ public class Soba {
 	
 	@Override
 	public String toString() {
-	
-		return sifra+" "+zabranjen+" "+napravljen.toString()+" "+posuden.toString()+" "+postanskiBroj+" "+kreiran.toString()+" "+program.toString();
+		
+		return sifra + " " + zabranjen + " " + napravljen.toString() + " " + posuden.toString() + " " + postanskiBroj + " " 
+		+ kreiran.toString() + " " + program;
 	}
 }
