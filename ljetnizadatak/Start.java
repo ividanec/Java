@@ -91,8 +91,8 @@ public class Start {
 		}
 		osoba.setIme(Pomocno.ucitajString("Promjeni ime", osoba.getIme()));
 		osoba.setPrezime(Pomocno.ucitajString("Promjeni prezime", osoba.getPrezime()));
-		osoba.setBroj_tel(Pomocno.ucitajString("Promjeni broj telefona", osoba.getBroj_tel()));
-		osoba.setOib(Pomocno.ucitajString("Promjeni oib", osoba.getOib()));
+		osoba.setBroj_tel(Pomocno.unesiSamoBrojeve("Promjeni broj telefona", osoba.getBroj_tel()));
+		osoba.setOib(Pomocno.unesiSamoBrojeve("Promjeni oib", osoba.getOib()));
 		
 		CRUDOsoba.updateOsoba(osoba);
 		
@@ -102,8 +102,8 @@ public class Start {
 		CRUDOsoba.create(new Osoba(1,
 				Pomocno.ucitajString("Unesi ime osobe"),
 				Pomocno.ucitajString("Unesi prezime osobe"),
-				Pomocno.ucitajString("Unesi broj telefona osobe"),
-				Pomocno.ucitajString("Unesi oib osobe")));
+				Pomocno.unesiSamoBrojeve("Unesi broj telefona osobe"),
+				Pomocno.unesiSamoBrojeve("Unesi oib osobe")));
 			
 	}
 	
@@ -114,13 +114,15 @@ public class Start {
 	}
 
 	private void izlistajOsobe() {
+		System.out.println("***** Ispis Osoba *****");
 		List<Osoba> osobe = CRUDOsoba.read();
 		int redniBroj=1;
 		
 		for(int i=0;i<osobe.size();i++) {
 			System.out.println(redniBroj++ + ". " + osobe.get(i));
+			
 		}
-		
+		System.out.println("*******************");
 	}
 
 	public static void main(String[] args) {

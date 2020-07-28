@@ -38,4 +38,29 @@ public class Pomocno {
 		}
 	}
 	
+	public static String unesiSamoBrojeve(String poruka) {
+		String s;
+		while(true) {
+			s = JOptionPane.showInputDialog(poruka);
+			if (s.trim().isEmpty() || !s.matches("[0-9]+")) {
+				JOptionPane.showMessageDialog(null, "Krivi unos");
+				continue;
+			}
+			return s;
+		}
+	}
+	
+	public static String unesiSamoBrojeve(String poruka, String trenutno) {
+		String s;
+		while(true) {
+			s = JOptionPane.showInputDialog(poruka, trenutno);
+			if (s.trim().isEmpty() || !s.matches("[0-9]+")) {
+				JOptionPane.showMessageDialog(null, "Krivi unos");
+				continue;
+			}
+			return s;
+		}
+	}
+	
+	
 }
