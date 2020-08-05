@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+
 public class Start {
 
 	public Start() {
@@ -80,7 +81,10 @@ public class Start {
 			JOptionPane.showMessageDialog(null, "Krivi redni broj");
 			return;
 		}
+		if(Pomocno.provjera("Jeste li sigurni da zelite obrisati osobu" + "\n" + "  da/ne")) {
 		CRUDOsoba.deleteOsoba(osoba.getSifra());
+		System.out.println("Osoba obrisana!"+ "\n"+"*******************");
+		}
 	}
 
 	private void promjeniOsobu() {
@@ -89,10 +93,10 @@ public class Start {
 			JOptionPane.showMessageDialog(null, "Krivi redni broj");
 			return;
 		}
-		osoba.setIme(Pomocno.ucitajString("Promjeni ime", osoba.getIme()));
-		osoba.setPrezime(Pomocno.ucitajString("Promjeni prezime", osoba.getPrezime()));
+		osoba.setIme(Pomocno.unosSamoSlova("Promjeni ime", osoba.getIme()));
+		osoba.setPrezime(Pomocno.unosSamoSlova("Promjeni prezime", osoba.getPrezime()));
 		osoba.setBroj_tel(Pomocno.unesiSamoBrojeve("Promjeni broj telefona", osoba.getBroj_tel()));
-		osoba.setOib(Pomocno.unesiSamoBrojeve("Promjeni oib", osoba.getOib()));
+		osoba.setOib(Pomocno.unosOib("Promjeni oib", osoba.getOib()));
 		
 		CRUDOsoba.updateOsoba(osoba);
 		
@@ -100,10 +104,10 @@ public class Start {
 
 	private void unosNoveOsobe() {
 		CRUDOsoba.create(new Osoba(1,
-				Pomocno.ucitajString("Unesi ime osobe"),
-				Pomocno.ucitajString("Unesi prezime osobe"),
+				Pomocno.unosSamoSlova("Unesi ime osobe"),
+				Pomocno.unosSamoSlova("Unesi prezime osobe"),
 				Pomocno.unesiSamoBrojeve("Unesi broj telefona osobe"),
-				Pomocno.unesiSamoBrojeve("Unesi oib osobe")));
+				Pomocno.unosOib("Unesi oib osobe")));
 			
 	}
 	
