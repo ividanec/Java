@@ -15,6 +15,7 @@ public class Start {
 	}
 	
 	private void izbornik() {
+		System.out.println("***************************");
 		System.out.println("1. Izlistaj sve osobe iz baze");
 		System.out.println("2. Unesi novu osobu");
 		System.out.println("3. Promjeni osobu");
@@ -22,6 +23,7 @@ public class Start {
 		System.out.println("5. ERA dijagram");
 		System.out.println("6. Github kod");
 		System.out.println("7. Izlaz iz aplikacije");
+		System.out.println("***************************");
 		izvedi();
 	}
 
@@ -63,6 +65,7 @@ public class Start {
 		} catch (Exception e) {
 			
 		}
+		
 		
 	}
 
